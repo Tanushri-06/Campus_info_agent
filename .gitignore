@@ -1,1 +1,4 @@
+.vvenv/
 .env
+__pycache__/
+campus_vector_db/
