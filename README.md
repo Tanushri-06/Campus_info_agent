@@ -41,68 +41,97 @@ The chatbot uses Retrieval-Augmented Generation (RAG) to retrieve relevant infor
 ---
 
 ## 🛠 Technologies Used
-
 - Python
 - LangChain
+- FastAPI
 - Streamlit
 - HuggingFace Embeddings
 - ChromaDB
 - Groq API
 - PyPDF
-
----
+- Pydantic
 
 ## 📂 Project Structure
-
-```
 Interactive-Campus-Info-Chatbot
 │
 ├── App
-│   ├── app.py
 │   ├── agents
 │   │   └── campus_info_agent.py
-│   └── services
-│       └── rag_service.py
+│   │
+│   ├── services
+│   │   └── rag_service.py
+│   │
+│   ├── workflows
+│   │   └── workflow.py
+│   │
+│   └── app.py
 │
 ├── data
 │   └── college_handbook.pdf
 │
 ├── campus_vector_db
 │
+├── api.py
+├── main.py
 ├── requirements.txt
 ├── README.md
 └── .env
-```
 
----
+
+## 🚀 Features
+📄 Document-based Question Answering using RAG
+🤖 AI-powered Campus Information Agent
+🔍 Semantic Search using ChromaDB
+📚 College Handbook PDF Processing
+🌐 REST API using FastAPI
+📖 Interactive API Documentation with Swagger UI
+🔄 Basic AI Workflow for processing user queries
 
 ## ▶️ How to Run
 
 1. Clone the repository
-
-```
-git clone <repository-link>
-```
-
+    git clone <repository-link>
 2. Install dependencies
+    pip install -r requirements.txt
+3. Add your API key in the .env file
+    GROQ_API_KEY=your_api_key
+4. Run the Streamlit application
+    streamlit run App/app.py
+5. Run the FastAPI server
+    uvicorn api:app --reload
+6. Open the API documentation
+    http://127.0.0.1:8000/docs
 
-```
-pip install -r requirements.txt
-```
+## 🔗 API Endpoints
 
-3. Add your API key in the `.env` file
+Method  | Endpoint | Description
+-----------------------------------------------------------------------------------------
+GET	    |     /	   |  Checks whether the API is running
+POST	|   /chat  |  Accepts a campus-related question and returns an AI-generated answer
 
-```
-GROQ_API_KEY=your_api_key
-```
-
-4. Run the application
-
-```
-streamlit run App/app.py
-```
-
----
+## 🏗 AI Workflow
+  User
+   │
+   ▼
+FastAPI Endpoint (/chat)
+   │
+   ▼
+Campus Workflow
+   │
+   ▼
+Campus Info Agent
+   │
+   ▼
+RAG Service
+   │
+   ▼
+ChromaDB Retrieval
+   │
+   ▼
+Groq LLM
+   │
+   ▼
+Response
 
 ## 💡 Sample Questions
 
@@ -121,5 +150,7 @@ The chatbot answers questions based on the uploaded college handbook using Retri
 ---
 
 ## 👩‍💻 Developed By
+Internship Project – Interactive Campus Info AI Agent
+- Sushant Trayambak Sonawane
+- Tanushri Vinayak Koli
 
-Internship Project – Interactive Campus Information Chatbot
