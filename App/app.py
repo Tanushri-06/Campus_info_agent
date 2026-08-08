@@ -1,25 +1,44 @@
+import sys
+from pathlib import Path
+
 import streamlit as st
 
-from services.rag_service import RAGService
+# Add project root to Python path
+PROJECT_ROOT = Path(__file__).resolve().parent.parent
+sys.path.append(str(PROJECT_ROOT))
 
-rag = RAGService()
+from App.workflows.workflow import CampusWorkflow
 
+
+# Page configuration
 st.set_page_config(
     page_title="Campus Information Chatbot",
     page_icon="🎓"
 )
 
-st.title("🎓 Campus Information Chatbot")
+# Create workflow
+workflow = CampusWorkflow()
 
-question = st.text_input(
-    "Ask anything about the college:"
+# Title
+st.title("🎓 Interactive Campus Information Chatbot")
+
+st.write(
+    "Ask me anything about the college, campus facilities, courses, "
+    "hostel, library, and more."
 )
 
-if st.button("Ask"):
+# User input
+question = st.text_input("💬 Ask your question:")
 
-    if question:
+# Ask button
+if st.button("Ask", type="primary"):
 
-        answer = rag.query(question)
+    if question.strip():
+
+        with st.spinner("Finding the answer..."):
+            answer = workflow.run(question)
 
         st.success(answer)
-        
+
+    else:
+        st.warning("Please enter a question.")
