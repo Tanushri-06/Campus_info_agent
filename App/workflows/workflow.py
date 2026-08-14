@@ -7,7 +7,7 @@
 #    def run(self, question):
 #        return self.rag.query(question)    
 
-from App.services.rag_service import RAGService
+#from services.rag_service import RAGService
 
 from App.agents.campus_info_agent import ask_campus_bot
 
