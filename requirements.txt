@@ -1,3 +1,4 @@
+streamlit
 fastapi
 uvicorn
 pydantic
@@ -14,5 +15,3 @@ chromadb
 sentence-transformers
 huggingface-hub
 pypdf
-
-streamlit

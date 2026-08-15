@@ -2,3 +2,5 @@
 .env
 __pycache__/
 campus_vector_db/
+.venv/
+*.pyc
