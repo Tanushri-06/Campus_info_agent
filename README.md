@@ -1,93 +1,107 @@
+# 🎓 CampusConnect AI
+
 # Interactive Campus Information Chatbot
 
-This project is an AI-powered Campus Information Chatbot that helps students quickly find information from college documents using Retrieval-Augmented Generation (RAG).
+CampusConnect AI is an AI-powered campus information chatbot designed to help students quickly find information about their college.
+
+The chatbot uses the college handbook as its main source of information. Students can ask questions about courses, library, hostel facilities, campus facilities, Wi-Fi, and other college-related information.
+
 
 ## Technologies Used
 
 - Python
+- Streamlit
 - LangChain
-- Google Gemini
+- HuggingFace Embeddings
 - ChromaDB
+- Groq API
+- FastAPI
+- Uvicorn
 - PyPDF
-- Streamlit (optional)
 
 ## Features
 
-- Answers questions from campus documents
-- Uses Gemini for response generation
-- Stores document embeddings in ChromaDB
-- Supports PDF-based knowledge retrieval
+-  Interactive campus information chatbot
+-  Answers questions using the college handbook
+-  Retrieval-Augmented Generation (RAG)
+-  Campus Information Agent
+-  Campus Workflow for connecting the frontend with the backend
+-  Interactive Streamlit chat interface
+-  ChromaDB vector database for document retrieval
+-  Groq LLM for generating answers
+-  HuggingFace embeddings for semantic search
+-  FastAPI API endpoints
+-  Suggested campus questions
+-  Clear chat functionality
+-  Loading state while generating responses
+-  Basic error handling
 
-# 🎓 Interactive Campus Information Chatbot
 
-## 📌 Project Overview
+## Project Overview
 
 The Interactive Campus Information Chatbot is an AI-powered chatbot that helps students quickly find information from college documents such as the college handbook, admission details, courses, hostel rules, and other campus-related information.
 
 The chatbot uses Retrieval-Augmented Generation (RAG) to retrieve relevant information from uploaded documents and generates accurate responses using a Large Language Model (Groq Llama 3).
 
----
 
-## 🚀 Features
-
-- 📄 Reads information from college PDF documents
-- 🔍 Retrieves relevant information using RAG
-- 🤖 Answers campus-related questions
-- 💬 Interactive chatbot interface using Streamlit
-- 📚 Uses ChromaDB for vector storage
-- 🧠 Uses HuggingFace embeddings
-- ⚡ Uses Groq Llama 3 for response generation
-
----
-
-## 🛠 Technologies Used
-- Python
-- LangChain
-- FastAPI
-- Streamlit
-- HuggingFace Embeddings
-- ChromaDB
-- Groq API
-- PyPDF
-- Pydantic
-
-## 📂 Project Structure
-Interactive-Campus-Info-Chatbot
+## Project Structure
+campus_info_agent/
 │
-├── App
-│   ├── agents
+├── App/
+│   ├── app.py
+│   │
+│   ├── agents/
 │   │   └── campus_info_agent.py
 │   │
-│   ├── services
+│   ├── services/
 │   │   └── rag_service.py
 │   │
-│   ├── workflows
-│   │   └── workflow.py
-│   │
-│   └── app.py
-│
-├── data
-│   └── college_handbook.pdf
-│
-├── campus_vector_db
+│   └── workflows/
+│       └── workflow.py
 │
 ├── api.py
+│
+├── data/
+│   └── college_handbook.pdf
+│
+├── campus_vector_db/
+│
+├── .env
+├── .gitignore
 ├── main.py
 ├── requirements.txt
-├── README.md
-└── .env
+└── README.md
 
 
-## 🚀 Features
-📄 Document-based Question Answering using RAG
-🤖 AI-powered Campus Information Agent
-🔍 Semantic Search using ChromaDB
-📚 College Handbook PDF Processing
-🌐 REST API using FastAPI
-📖 Interactive API Documentation with Swagger UI
-🔄 Basic AI Workflow for processing user queries
+## How the System Works
 
-## ▶️ How to Run
+The project follows a Retrieval-Augmented Generation (RAG) architecture.
+
+
+                    User
+                     │
+                     ▼
+              Streamlit Frontend
+                     │
+                     ▼
+              Campus Workflow
+                     │
+                     ▼
+             Campus Info Agent
+                     │
+                     ▼
+                 RAG Service
+                     │
+              ┌──────┴──────┐
+              ▼             ▼
+          ChromaDB        Groq
+        Vector Search       LLM
+              │             │
+              └──────┬──────┘
+                     ▼
+                  Answer
+
+## How to Run
 
 1. Clone the repository
     git clone <repository-link>
@@ -102,38 +116,16 @@ Interactive-Campus-Info-Chatbot
 6. Open the API documentation
     http://127.0.0.1:8000/docs
 
-## 🔗 API Endpoints
+
+## API Endpoints
 
 Method  | Endpoint | Description
------------------------------------------------------------------------------------------
-GET	    |     /	   |  Checks whether the API is running
-POST	|   /chat  |  Accepts a campus-related question and returns an AI-generated answer
+---------------------------------------------------------
+GET	  |     /	 |  Checks whether the API is running
+POST	  |   /chat  |  Accepts a campus-related question and returns an AI-generated answer
 
-## 🏗 AI Workflow
-  User
-   │
-   ▼
-FastAPI Endpoint (/chat)
-   │
-   ▼
-Campus Workflow
-   │
-   ▼
-Campus Info Agent
-   │
-   ▼
-RAG Service
-   │
-   ▼
-ChromaDB Retrieval
-   │
-   ▼
-Groq LLM
-   │
-   ▼
-Response
 
-## 💡 Sample Questions
+## Sample Questions
 
 - What undergraduate courses are offered?
 - What are the library timings?
@@ -141,16 +133,15 @@ Response
 - What is the admission process?
 - Where is the placement cell?
 
----
-
-## 📷 Output
+## Output
 
 The chatbot answers questions based on the uploaded college handbook using Retrieval-Augmented Generation (RAG).
 
----
 
-## 👩‍💻 Developed By
-Internship Project – Interactive Campus Info AI Agent
+## Developed By
+Internship Project : Interactive Campus Info AI Agent
+Application Name: CampusConnect AI
+
 - Sushant Trayambak Sonawane
 - Tanushri Vinayak Koli
 
