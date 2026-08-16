@@ -37,16 +37,30 @@ if str(BASE_DIR) not in sys.path:
 # If your class/function name is different, only this import line and the
 # get_bot_response() function below need to be adjusted - nothing else in
 # the UI depends on how the backend works internally.
-try:
-    from App.workflows.workflow import CampusWorkflow
-    workflow = CampusWorkflow()
-    BACKEND_READY = True
-    BACKEND_ERROR = None
-except Exception as e:
+
+workflow = None
+BACKEND_ERROR = None
+
+
+def get_workflow():
+    global workflow
+
+    if workflow is None:
+        from App.workflows.workflow import CampusWorkflow
+        workflow = CampusWorkflow()
+
+    return workflow
+
+#try:
+#    from App.workflows.workflow import CampusWorkflow
+#    workflow = CampusWorkflow()
+#    BACKEND_READY = True
+#    BACKEND_ERROR = None
+#except Exception as e:
     # We don't crash the whole app if the backend import fails -
     # instead we show a friendly error in the UI (see error handling section).
-    BACKEND_READY = False
-    BACKEND_ERROR = str(e)
+#    BACKEND_READY = False
+#    BACKEND_ERROR = str(e)
 
 
 # ---------------------------------------------------------------------------
@@ -229,23 +243,24 @@ def get_bot_response(question: str) -> str:
     Any backend error is caught here and turned into a friendly message,
     so the raw Python traceback is never shown to the user.
     """
-    if not BACKEND_READY:
-        return (
-            "⚠️ CampusConnect AI can't reach the campus knowledge base right now. "
-            "Please make sure the backend (CampusWorkflow) is set up correctly."
-        )
+#    if not BACKEND_READY:
+#        return (
+#            "⚠️ CampusConnect AI can't reach the campus knowledge base right now. "
+#            "Please make sure the backend (CampusWorkflow) is set up correctly."
+#        )
     try:
         # This is the ONLY line that talks to the existing backend pipeline.
-        result = workflow.run(question)
+        result = get_workflow().run(question)
 
         # Support a couple of common return shapes without assuming too much
         # about the existing workflow's internals.
         if isinstance(result, dict):
             return result.get("answer") or result.get("response") or str(result)
         return str(result)
+    
     except Exception:
         return (
-            "😕 Sorry, something went wrong while looking that up. "
+            "Sorry, something went wrong while looking that up. "
             "Please try rephrasing your question or ask again in a moment."
         )
 
