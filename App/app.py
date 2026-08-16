@@ -416,13 +416,13 @@ def main():
         st.session_state.pending_question = None
         handle_question(question)
 
-    if not BACKEND_READY:
-        st.error(
-            "⚠️ Could not connect to the CampusWorkflow backend.\n\n"
-            f"Details: {BACKEND_ERROR}\n\n"
-            "The UI will still load, but answers won't work until the backend "
-            "import is fixed."
-        )
+#    if not BACKEND_READY:
+#        st.error(
+#            "⚠️ Could not connect to the CampusWorkflow backend.\n\n"
+#            f"Details: {BACKEND_ERROR}\n\n"
+#            "The UI will still load, but answers won't work until the backend "
+#            "import is fixed."
+#        )
 
     render_input_area()
 #    render_suggestions()
